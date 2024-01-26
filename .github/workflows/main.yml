@@ -26,5 +26,4 @@ jobs:
           
       - name: Invoke execution via pytest (parameters in pytest.ini file)
         run: |
-          pip install pytest
           pytest

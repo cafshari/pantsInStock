@@ -9,11 +9,11 @@ def open_page(page: Page) -> None:
 
 
 def close_dynamic_modals(page: Page) -> None:
-    if page.get_by_test_id("dynamic-modal-content"):
-        print('closing email sign up modal')
+    if page.get_by_test_id("dynamic-modal-content").is_visible():
+        print('closing promotional modal')
         page.get_by_label("close email sign up modal").click()  # this label is used for multiple different modals
 
-    if page.get_by_label("Close Survey", exact=True):
+    if page.get_by_label("Close Survey", exact=True).is_visible():
         print('closing survey modal')
         page.get_by_label("Close Survey", exact=True).click()
 
@@ -26,13 +26,16 @@ def start(page: Page):
 
 
 def test_check_size_in_stock(page: Page):
+    # Make sure we're at the right product page
+    expect(page.get_by_role("heading", name="Skinny Traveler Pant")).to_be_visible()
+
     # Choose the pants color: Black
     page.get_by_label("Black", exact=True).check()
 
-    # First, click on waist size "32W" NOTE: when out of stock, the label = "Size:32W out of stock" so using exact=False
+    # Click on waist size "32W" NOTE: when out of stock, the label = "Size:32W out of stock" so using exact=False
     page.get_by_label("Size:32W", exact=False).click()
 
-    # Then, click on length size "30L" NOTE: when out of stock, the label = "Size:30L out of stock" so using exact=False
+    # Click on length size "30L" NOTE: when out of stock, the label = "Size:30L out of stock" so using exact=False
     page.get_by_label("Size:30L", exact=False).click()
 
     # Now that the desired size is selected, determine if it's in stock
@@ -41,4 +44,3 @@ def test_check_size_in_stock(page: Page):
         print("your size is in stock!")
     else:
         print("your size is out of stock.")
-

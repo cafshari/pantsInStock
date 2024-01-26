@@ -9,14 +9,12 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       
       - name: Setup Python
         uses: actions/setup-python@v5.0.0
         with:
           python-version: '3.x'
           cache: 'pip'
-      - run: echo "Python has been installed."
       
       - name: Install dependencies
         run: |

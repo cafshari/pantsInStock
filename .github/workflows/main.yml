@@ -25,15 +25,17 @@ jobs:
       - name: Invoke execution via pytest (parameters in pytest.ini file)
         id: pytest
         run: |
-          pytest_output=$(pytest)
-          echo "PYTEST_OUTPUT1=$pytest_output" >> "$GITHUB_OUTPUT"
+          pytest --config=pytest.ini
+          exit_code=$?
 
-      - name: Use Pytest output in the next step
-        run: |
-          echo "PYTEST_OUTPUT1 value:  ${{ steps.pytest.outputs.PYTEST_OUTPUT1 }}"
+          echo "PYTEST_RESULT=${exit_code}" >> "$GITHUB_OUTPUT"
+        
+      # - name: Use Pytest output in the next step
+      #   run: |
+      #     echo "PYTEST_RESULT value:  ${{ steps.pytest.outputs.PYTEST_RESULT }}"
           
       - name: Send email
-        if: ${{ steps.pytest.outputs.pytest_output }} == True
+        # if: ${{ steps.pytest.outputs.PYTEST_RESULT }} == 0
         uses: dawidd6/action-send-mail@v3.10.0
         with:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password

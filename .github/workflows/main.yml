@@ -20,18 +20,16 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
-          playwright install
+          playwright install chromium
           
       - name: Invoke execution via pytest (parameters in pytest.ini file)
         id: pytest
         run: |
           pytest_output=$(pytest)
-          echo "::set-output name=pytest_output::$pytest_output"
           echo "PYTEST_OUTPUT1=$pytest_output" >> "$GITHUB_OUTPUT"
 
       - name: Use Pytest output in the next step
         run: |
-          echo "pytest_output value:  ${{ steps.pytest.outputs.pytest_output }}"
           echo "PYTEST_OUTPUT1 value:  ${{ steps.pytest.outputs.PYTEST_OUTPUT1 }}"
           
       - name: Send email

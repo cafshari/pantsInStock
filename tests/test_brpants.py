@@ -1,5 +1,4 @@
-import re
-
+import os
 import pytest
 from playwright.sync_api import Page, expect
 
@@ -25,7 +24,7 @@ def start(page: Page):
     close_dynamic_modals(page)
 
 
-def test_check_size_in_stock(page: Page):
+def test_check_size_in_stock(page: Page) -> bool:
     # Make sure we're at the right product page
     expect(page.get_by_role("heading", name="Skinny Traveler Pant")).to_be_visible()
 
@@ -39,8 +38,10 @@ def test_check_size_in_stock(page: Page):
     page.get_by_label("Size:30L", exact=False).click()
 
     # Now that the desired size is selected, determine if it's in stock
+    instock = False
     # 'Add to Bag' button will be disabled if it's not in stock NOTE: the label is a long sentence so using exact=False
     if page.get_by_label("Add to bag", exact=False).is_enabled():
-        print("your size is in stock!")
-    else:
-        print("your size is out of stock.")
+        instock = True
+
+    print(f'is your size in stock --> {instock}')
+    return instock

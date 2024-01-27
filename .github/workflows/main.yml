@@ -31,13 +31,13 @@ jobs:
         uses: dawidd6/action-send-mail@v3.10.0
         with:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password
-          connection_url: smtp://cyrustechcorp@gmail.com:${{secrets.GMAIL_APP_PASSWORD}}@smtp.gmail.com:25
+          connection_url: smtp://${{secrets.EMAIL_ADDRESS}}:${{secrets.GMAIL_APP_PASSWORD}}@smtp.gmail.com:25
           # Subject of mail message
           subject: result of pantsInStock
           # Recipients mail addresses (separated with comma)
           to: toupee07.gives@icloud.com
           # Full name of mail sender (might be with an email address specified in <>)
-          from: <cyrustechcorp@gmail.com>
+          # from: 
           # Body of mail message (might be a filename prefixed with file:// to read from)
           body: your pants might be in stock, check https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
           # HTML body of mail message (might be a filename prefixed with file:// to read from)

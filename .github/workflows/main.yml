@@ -25,7 +25,7 @@ jobs:
       - name: Invoke execution via pytest (parameters in pytest.ini file)
         id: pytest
         run: |
-          pytest --config=pytest.ini
+          pytest
           exit_code=$?
 
           echo "PYTEST_RESULT=${exit_code}" >> "$GITHUB_OUTPUT"

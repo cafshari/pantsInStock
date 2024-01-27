@@ -23,11 +23,19 @@ jobs:
           playwright install
           
       - name: Invoke execution via pytest (parameters in pytest.ini file)
-        id: run_pytest
+        id: pytest
         run: |
-          pytest
+          pytest_output=$(pytest)
+          echo "::set-output name=pytest_output::$pytest_output"
+          echo "PYTEST_OUTPUT1=$pytest_output" >> "$GITHUB_OUTPUT"
+
+      - name: Use Pytest output in the next step
+        run: |
+          echo "pytest_output value:  ${{ steps.pytest.outputs.pytest_output }}"
+          echo "PYTEST_OUTPUT1 value:  ${{ steps.pytest.outputs.PYTEST_OUTPUT1 }}"
           
       - name: Send email
+        if: ${{ steps.pytest.outputs.pytest_output }} == True
         uses: dawidd6/action-send-mail@v3.10.0
         with:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password

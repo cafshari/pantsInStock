@@ -24,7 +24,7 @@ def start(page: Page):
     close_dynamic_modals(page)
 
 
-def test_check_size_in_stock(page: Page) -> bool:
+def test_check_size_in_stock(page: Page):
     # Make sure we're at the right product page
     expect(page.get_by_role("heading", name="Skinny Traveler Pant")).to_be_visible()
 
@@ -38,10 +38,13 @@ def test_check_size_in_stock(page: Page) -> bool:
     page.get_by_label("Size:30L", exact=False).click()
 
     # Now that the desired size is selected, determine if it's in stock
-    instock = False
     # 'Add to Bag' button will be disabled if it's not in stock NOTE: the label is a long sentence so using exact=False
     if page.get_by_label("Add to bag", exact=False).is_enabled():
-        instock = True
+        print("In stock!")
+        assert True
+    else:
+        print("Out of stock!")
+        assert False
 
-    print(f'is your size in stock --> {instock}')
-    return instock
+    # print(page.content())
+    # page.screenshot(path='screenshot_headless.png')

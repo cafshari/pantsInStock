@@ -30,9 +30,9 @@ jobs:
 
           echo "PYTEST_RESULT=${exit_code}" >> "$GITHUB_OUTPUT"
         
-      # - name: Use Pytest output in the next step
-      #   run: |
-      #     echo "PYTEST_RESULT value:  ${{ steps.pytest.outputs.PYTEST_RESULT }}"
+      - name: Use Pytest output in the next step
+        run: |
+          echo "PYTEST_RESULT value:  ${{ steps.pytest.outputs.PYTEST_RESULT }}"
           
       - name: Send email
         # if: ${{ steps.pytest.outputs.PYTEST_RESULT }} == 0

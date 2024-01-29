@@ -1,10 +1,9 @@
-import os
 import pytest
 from playwright.sync_api import Page, expect
 
 
 def open_page(page: Page) -> None:
-    page.goto("https://bananarepublic.gap.com/browse/product.do?pid=2666360923230")
+    page.goto("/browse/product.do?pid=2666360923230")  # base url provided in pytest.ini
 
 
 def close_dynamic_modals(page: Page) -> None:
@@ -45,6 +44,3 @@ def test_check_size_in_stock(page: Page):
     else:
         print("Out of stock!")
         assert False
-
-    # print(page.content())
-    # page.screenshot(path='screenshot_headless.png')

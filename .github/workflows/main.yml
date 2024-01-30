@@ -32,10 +32,10 @@ jobs:
         
       - name: Use Pytest output in the next step
         run: |
-          echo "PYTEST_RESULT value:  ${{ steps.pytest.outputs.PYTEST_RESULT }}"
+          echo "Item in stock? ${{ env.MY_VAR }}"
           
       - name: Send email
-        # if: ${{ steps.pytest.outputs.PYTEST_RESULT }} == 0
+        if: ${{ env.MY_VAR }} == True
         uses: dawidd6/action-send-mail@v3.10.0
         with:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password

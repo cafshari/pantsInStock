@@ -26,10 +26,6 @@ jobs:
         id: pytest
         run: |
           pytest
-        
-      - name: Use Pytest output in the next step
-        run: |
-          echo "Item in stock? ${{ env.IS_IN_STOCK }}"
           
       - name: Send email
         if: env.IS_IN_STOCK == 'true'
@@ -38,13 +34,13 @@ jobs:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password
           connection_url: smtp://${{secrets.EMAIL_ADDRESS}}:${{secrets.GMAIL_APP_PASSWORD}}@smtp.gmail.com:25
           # Subject of mail message
-          subject: result of pantsInStock
+          subject: Your pants may be in stock!
           # Recipients mail addresses (separated with comma)
           to: ${{secrets.DESTINATION_EMAIL_ADDRESS}}
           # Full name of mail sender (might be with an email address specified in <>)
-          from: github-pantsInStock
+          from: notBananaRepublic
           # Body of mail message (might be a filename prefixed with file:// to read from)
-          body: your pants might be in stock, check https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
+          body: Your pants might be in stock, check the following URL:: https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
           # HTML body of mail message (might be a filename prefixed with file:// to read from)
           # html_body: # optional
           # Carbon copy recipients (separated with comma)

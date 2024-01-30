@@ -26,16 +26,13 @@ jobs:
         id: pytest
         run: |
           pytest
-          exit_code=$?
-
-          echo "PYTEST_RESULT=${exit_code}" >> "$GITHUB_OUTPUT"
         
       - name: Use Pytest output in the next step
         run: |
-          echo "Item in stock? ${{ env.MY_VAR }}"
+          echo "Item in stock? ${{ env.IS_IN_STOCK }}"
           
       - name: Send email
-        if: ${{ env.MY_VAR }} == True
+        if: ${{ env.IS_IN_STOCK }} == true
         uses: dawidd6/action-send-mail@v3.10.0
         with:
           # Connection URL protocol://user:password@server:port, protocol can be smtp or smtp+starttls, replaces server_address, server_port, secure, username and password

@@ -34,5 +34,5 @@ def test_check_size_in_stock(page: Page):
         print("Out of stock!")
         if env_file:
             with open(env_file, "a") as myfile:
-                myfile.write(f"IS_IN_STOCK=${in_stock}")
+                myfile.write(f"IS_IN_STOCK={in_stock}")
         # assert False

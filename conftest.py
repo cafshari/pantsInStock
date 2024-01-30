@@ -21,7 +21,7 @@ def open_page(page: Page) -> None:
 
 def close_dynamic_modals(page: Page) -> None:
     if page.get_by_test_id("dynamic-modal-content").is_visible():
-        print('closing promotional modal')
+        print('\nclosing promotional modal')
         page.get_by_label("close email sign up modal").click()  # this label is used for multiple different modals
 
     if page.get_by_label("Close Survey", exact=True).is_visible():

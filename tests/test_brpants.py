@@ -16,7 +16,7 @@ def test_check_size_in_stock(page: Page):
     page.get_by_label("Size:32W", exact=False).click()
 
     # Click on length size "30L" NOTE: when out of stock, the label = "Size:30L out of stock" so using exact=False
-    page.get_by_label("Size:34L", exact=False).click()
+    page.get_by_label("Size:30L", exact=False).click()
 
     # Now that the desired size is selected, determine if it's in stock
     # 'Add to Bag' button will be disabled if it's not in stock NOTE: the label is a long sentence so using exact=False

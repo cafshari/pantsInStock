@@ -40,7 +40,7 @@ jobs:
           # Full name of mail sender (might be with an email address specified in <>)
           from: notBananaRepublic
           # Body of mail message (might be a filename prefixed with file:// to read from)
-          body: Your pants might be in stock, check the following URL:: https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
+          body: Your pants might be in stock, check the following URL https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
           # HTML body of mail message (might be a filename prefixed with file:// to read from)
           # html_body: # optional
           # Carbon copy recipients (separated with comma)

@@ -43,6 +43,7 @@ jobs:
           body: Your pants might be in stock, check the following URL https://bananarepublic.gap.com/browse/product.do?pid=2666360923230
 
       - name: Upload artifact of Playwright traces
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: test-results

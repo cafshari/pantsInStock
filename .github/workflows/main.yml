@@ -1,3 +1,4 @@
+# NOTE: I've manually disabled this workflow on 3/6/2024 because the targeted item is permanently out of stock. 
 name: check-pants-in-stock
 on:
   workflow_dispatch:

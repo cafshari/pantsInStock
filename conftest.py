@@ -16,7 +16,7 @@ def browser_context_args(browser_context_args):
 
 
 def open_page(page: Page) -> None:
-    page.goto("/browse/product.do?pid=2666360923230")  # base url provided in pytest.ini
+    page.goto("/browse/product.do?pid=2666360923230")
 
 
 def close_dynamic_modals(page: Page) -> None:
